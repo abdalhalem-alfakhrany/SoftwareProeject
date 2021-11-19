@@ -1,5 +1,6 @@
 package pages;
 
+import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
@@ -43,15 +44,39 @@ public class Search extends JFrame {
         constraints.gridy = 0;
         add(searchPanel(), constraints);
 
+        constraints.gridy = 1;
+        add(dataColumns(), constraints);
+
         constraints.fill = GridBagConstraints.BOTH;
         constraints.weighty = 1.0;
         constraints.weightx = 1.0;
         constraints.gridx = 0;
-        constraints.gridy = 1;
+        constraints.gridy = 2;
         add(dataListPanel, constraints);
 
         setLocationRelativeTo(null);
         setVisible(true);
+    }
+
+    JPanel dataColumns() {
+        JPanel panel = new JPanel();
+
+        panel.setLayout(new GridBagLayout());
+        GridBagConstraints constraints = new GridBagConstraints();
+
+        constraints.insets = new Insets(0, 10, 0, 10);
+        panel.add(new JLabel("Name"), constraints);
+        panel.add(new JLabel("Expiration Date"), constraints);
+        panel.add(new JLabel("Active Ingredient"), constraints);
+        panel.add(new JLabel("amount"), constraints);
+
+        constraints.fill = GridBagConstraints.HORIZONTAL;
+        constraints.insets = new Insets(0, 0, 0, 0);
+        constraints.weightx = 1.0;
+        JPanel spacer = new JPanel();
+        panel.add(spacer, constraints);
+
+        return panel;
     }
 
     JPanel searchPanel() {
@@ -79,7 +104,7 @@ public class Search extends JFrame {
                 constraints.weighty = 1.0;
                 constraints.weightx = 1.0;
                 constraints.gridx = 0;
-                constraints.gridy = 1;
+                constraints.gridy = 2;
 
                 add(dataListPanel, constraints);
                 revalidate();
@@ -122,10 +147,10 @@ public class Search extends JFrame {
 
         constraints.insets = new Insets(0, 10, 0, 10);
 
-        JLabel name = new JLabel("Name : " + medicine.getName());
-        JLabel expirationDate = new JLabel("Expiration Date : " + medicine.getExpirationDate());
-        JLabel activeIngredient = new JLabel("Active Ingredient : " + medicine.getActiveIngredient());
-        JLabel amount = new JLabel("amount : " + medicine.getAmount());
+        JLabel name = new JLabel(medicine.getName());
+        JLabel expirationDate = new JLabel(medicine.getExpirationDate());
+        JLabel activeIngredient = new JLabel(medicine.getActiveIngredient());
+        JLabel amount = new JLabel(medicine.getAmount() + "");
 
         panel.add(name, constraints);
         panel.add(expirationDate, constraints);
@@ -140,11 +165,22 @@ public class Search extends JFrame {
 
         JPanel actionsPanel = new JPanel();
         actionsPanel.setLayout(new GridLayout(2, 0, 0, 10));
+
+        Color buttonsFontColor = Color.WHITE;
+
+        Color editButtonBGColor = new Color(255, 193, 7);
         JButton edit = new JButton("edit data");
+        edit.setBackground(editButtonBGColor);
+        edit.setForeground(buttonsFontColor);
+
         edit.addActionListener((event) -> {
             new Edit("1");
         });
+
+        Color deleteButtonBGColor = new Color(187, 45, 59);
         JButton delete = new JButton("delete data");
+        delete.setBackground(deleteButtonBGColor);
+        delete.setForeground(buttonsFontColor);
 
         actionsPanel.add(edit);
         actionsPanel.add(delete);

@@ -76,19 +76,8 @@ public class Register_Login extends JFrame {
         return panel;
     }
 
-    private void logIn() {
-        // login logic hear
-        parent.logedIn = true;
-        this.dispose();
-    }
-
-    private void register() {
-        // registeration logic hear
-        parent.logedIn = true;
-        this.dispose();
-    }
-
     JPanel inputGroup(String dataMapKey, String lableString, Map<String, String> dataMap) {
+
         JPanel panel = new JPanel();
 
         JLabel label = new JLabel(lableString);
@@ -112,5 +101,17 @@ public class Register_Login extends JFrame {
         panel.add(inputField, constraints);
 
         return panel;
+    }
+
+    private void logIn() {
+        // login logic hear
+        parent.logedIn = true;
+        this.dispose();
+    }
+
+    private void register() {
+        // registeration logic hear
+        parent.logedIn = true;
+        this.dispose();
     }
 }
